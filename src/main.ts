@@ -6,6 +6,9 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import config from 'config'
 
+//Import Router
+import home from './router-home'
+
 //Import Class
 import ParamDataTest from './Data-test1';
 
@@ -38,6 +41,9 @@ dbDebugger('Connected to the database...');
 
 //Config
 console.log('Config: { ' + config.get('description') + ' || User: ' + config.get('User.name') + ' }')
+
+//Router
+app.use('/api/home', home);
 
 //Express Function Get
 app.get('/Hi', (req, res) => {

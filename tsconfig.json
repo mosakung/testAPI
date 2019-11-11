@@ -4,15 +4,18 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "outDir": "dist",
+    "outDir": "./dist",
     "sourceMap": true,
-    "sourceRoot": "src",
+    "sourceRoot": "./src",
     "target": "es5",
     "lib": [
       "es6",
       "dom"
     ]
   },
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

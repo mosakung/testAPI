@@ -10,6 +10,8 @@ var response_time_1 = __importDefault(require("response-time"));
 var helmet_1 = __importDefault(require("helmet"));
 var morgan_1 = __importDefault(require("morgan"));
 var config_1 = __importDefault(require("config"));
+//Import Router
+var router_home_1 = __importDefault(require("./router-home"));
 //Import Class
 var Data_test1_1 = __importDefault(require("./Data-test1"));
 //Require Module
@@ -33,6 +35,8 @@ if (app.get('env') === 'DEV') {
 dbDebugger('Connected to the database...');
 //Config
 console.log('Config: { ' + config_1.default.get('description') + ' || User: ' + config_1.default.get('User.name') + ' }');
+//Router
+app.use('/api/home', router_home_1.default);
 //Express Function Get
 app.get('/Hi', function (req, res) {
     res.send('im sad');
