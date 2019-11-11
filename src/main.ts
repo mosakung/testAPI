@@ -1,21 +1,27 @@
+//Import Module
 import express from 'express';
 import Joi from 'joi';
 import responseTime from 'response-time';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import config from 'config';
+import config from 'config'
 
+//Import Class
 import ParamDataTest from './Data-test1';
 
+//Require Module
+const startupDebugger = require('debug')('app:startup');
+const dbDebugger = require('debug')('app:db');
+
+//Set Class
 const app = express();
 
 const paramDataTest = new ParamDataTest();
 
+//PROCESS_ENV
+console.log(`NODE_ENV: ${process.env.NODE_ENV}` + ` || app: ${app.get('env')}`);
+
 //APP USE
-
-console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
-console.log(`app: ${app.get('env')}`);
-
 app.use(express.json());
 
 app.use(helmet());
@@ -28,12 +34,12 @@ if (app.get('env') === 'DEV') {
     app.use(morgan('tiny'));
 }
 
-//Config
+dbDebugger('Connected to the database...');
 
-console.log('Config: ' + config.get('description') + ' || User: ' + config.get('User.name'))
+//Config
+console.log('Config: { ' + config.get('description') + ' || User: ' + config.get('User.name') + ' }')
 
 //Express Function Get
-
 app.get('/Hi', (req, res) => {
 
     res.send('im sad');
@@ -60,7 +66,6 @@ app.get('/api-get/search/:id', (req, res) => {
 })
 
 //Express Function Post
-
 app.post('/api-post/push', (req, res) => {
 
     const postTemp: any = {
@@ -123,7 +128,6 @@ app.delete('/api-delete/:id', (req, res) => {
 });
 
 //Server
-
 app.listen(3000, () => {
     console.log('Start server at port 3000.');
 });

@@ -3,18 +3,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+//Import Module
 var express_1 = __importDefault(require("express"));
 var joi_1 = __importDefault(require("joi"));
 var response_time_1 = __importDefault(require("response-time"));
 var helmet_1 = __importDefault(require("helmet"));
 var morgan_1 = __importDefault(require("morgan"));
 var config_1 = __importDefault(require("config"));
+//Import Class
 var Data_test1_1 = __importDefault(require("./Data-test1"));
+//Require Module
+var startupDebugger = require('debug')('app:startup');
+var dbDebugger = require('debug')('app:db');
+//Set Class
 var app = express_1.default();
 var paramDataTest = new Data_test1_1.default();
+//PROCESS_ENV
+console.log("NODE_ENV: " + process.env.NODE_ENV + (" || app: " + app.get('env')));
 //APP USE
-console.log("NODE_ENV: " + process.env.NODE_ENV);
-console.log("app: " + app.get('env'));
 app.use(express_1.default.json());
 app.use(helmet_1.default());
 if (app.get('env') === 'DEV') {
@@ -24,8 +30,9 @@ if (app.get('env') === 'DEV') {
     }));
     app.use(morgan_1.default('tiny'));
 }
+dbDebugger('Connected to the database...');
 //Config
-console.log('Config: ' + config_1.default.get('description') + ' || User: ' + config_1.default.get('User.name'));
+console.log('Config: { ' + config_1.default.get('description') + ' || User: ' + config_1.default.get('User.name') + ' }');
 //Express Function Get
 app.get('/Hi', function (req, res) {
     res.send('im sad');
