@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "joi": "^14.3.1",
+    "mogodb": "0.0.1-security",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.4",
     "response-time": "^2.3.2",
