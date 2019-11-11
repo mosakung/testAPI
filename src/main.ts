@@ -3,6 +3,7 @@ import Joi from 'joi';
 import responseTime from 'response-time';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import config from 'config';
 
 import ParamDataTest from './Data-test1';
 
@@ -26,6 +27,10 @@ if (app.get('env') === 'DEV') {
     }));
     app.use(morgan('tiny'));
 }
+
+//Config
+
+console.log('Config: ' + config.get('description') + ' || User: ' + config.get('User.name'))
 
 //Express Function Get
 

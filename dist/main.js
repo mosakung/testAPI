@@ -8,6 +8,7 @@ var joi_1 = __importDefault(require("joi"));
 var response_time_1 = __importDefault(require("response-time"));
 var helmet_1 = __importDefault(require("helmet"));
 var morgan_1 = __importDefault(require("morgan"));
+var config_1 = __importDefault(require("config"));
 var Data_test1_1 = __importDefault(require("./Data-test1"));
 var app = express_1.default();
 var paramDataTest = new Data_test1_1.default();
@@ -23,6 +24,8 @@ if (app.get('env') === 'DEV') {
     }));
     app.use(morgan_1.default('tiny'));
 }
+//Config
+console.log('Config: ' + config_1.default.get('description') + ' || User: ' + config_1.default.get('User.name'));
 //Express Function Get
 app.get('/Hi', function (req, res) {
     res.send('im sad');
